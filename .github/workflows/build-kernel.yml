@@ -20,8 +20,11 @@ jobs:
           ./compile.sh \
             BOARD=transpeed-8k618-t \
             BRANCH=edge \
+            RELEASE=bookworm \
             KERNEL_ONLY=yes \
             KERNEL_CONFIGURE=no \
+            EXPERT=yes \
+            BUILD_MINIMAL=no \
             USE_GITHUB_UBOOT_MIRROR=yes
 
       - name: Upload Kernel Debs
