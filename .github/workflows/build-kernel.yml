@@ -1,0 +1,25 @@
+name: Build Armbian Kernel for Transpeed
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-kernel:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Armbian build framework
+        uses: actions/checkout@v4
+
+      - name: Build Kernel Package
+        run: |
+          ./compile.sh \
+            BOARD=transpeed-8k618-t \
+            BRANCH=edge \
+            KERNEL_ONLY=yes \
+            KERNEL_CONFIGURE=no
+
+      - name: Upload Kernel Debs
+        uses: actions/upload-artifact@v4
+        with:
+          name: kernel-debs
+          path: output/debs/*.deb
